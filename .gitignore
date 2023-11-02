@@ -50,7 +50,7 @@ Binaries/*
 !Binaries/Win64/
 
 Binaries/Win64/*
-!/Binaries/Win64/AlumCockSGJEditor.target
+!/Binaries/Win64/SGJ2023FallEditor.target
 !/Binaries/Win64/UnrealEditor.modules
 !/Binaries/Win64/UnrealEditor-SGJ2023Fall.dll
 !/Binaries/Win64/UnrealEditor-SGJ2023Fall.pdb
