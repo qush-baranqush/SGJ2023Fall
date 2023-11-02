@@ -47,6 +47,14 @@ SourceArt/**/*.tga
 
 # Binary Files
 Binaries/*
+!Binaries/Win64/
+
+Binaries/Win64/*
+!/Binaries/Win64/AlumCockSGJEditor.target
+!/Binaries/Win64/UnrealEditor.modules
+!/Binaries/Win64/UnrealEditor-SGJ2023Fall.dll
+!/Binaries/Win64/UnrealEditor-SGJ2023Fall.pdb
+
 Plugins/*/Binaries/*
 
 # Builds
@@ -69,6 +77,7 @@ Saved/*
 # Compiled source files for the engine to use
 Intermediate/*
 Plugins/*/Intermediate/*
+Plugins/Developer/*
 
 # Cache files for the editor to use
 DerivedDataCache/*

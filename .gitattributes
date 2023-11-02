@@ -1,0 +1,12 @@
+* text=auto
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.uasset filter=lfs -diff merge=binary -text
+*.umap filter=lfs -diff merge=binary -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs -diff merge=binary -text
+*.exe filter=lfs -diff merge=binary -text
+*.pdb filter=lfs -diff merge=binary -text
