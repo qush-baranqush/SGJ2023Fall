@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Components/HealthComponent.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -52,12 +53,18 @@ ASGJ2023FallCharacter::ASGJ2023FallCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	healthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 }
 
 void ASGJ2023FallCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	check(healthComponent);
+
+	healthComponent->OnDeath.AddUObject(this, &ASGJ2023FallCharacter::OnDeath);
 
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
@@ -67,6 +74,13 @@ void ASGJ2023FallCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+}
+
+void ASGJ2023FallCharacter::OnDeath()
+{
+	PlayAnimMontage(deathAnimMontage);
+	GetCharacterMovement()->DisableMovement();
+	SetLifeSpan(deathAnimMontage->GetPlayLength() + AfterDeathDestroingTime);
 }
 
 //////////////////////////////////////////////////////////////////////////
