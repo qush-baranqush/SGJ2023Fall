@@ -13,6 +13,8 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+class UHealthComponent;
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
@@ -55,7 +57,15 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-			
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UHealthComponent* healthComponent;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Death")
+	UAnimMontage* deathAnimMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Death")
+	float AfterDeathDestroingTime;
 
 protected:
 	// APawn interface
@@ -63,6 +73,8 @@ protected:
 	
 	// To add mapping context
 	virtual void BeginPlay();
+
+	virtual void OnDeath();
 
 public:
 	/** Returns CameraBoom subobject **/
