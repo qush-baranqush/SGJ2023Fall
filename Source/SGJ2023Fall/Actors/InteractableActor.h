@@ -12,9 +12,6 @@ class SGJ2023FALL_API AInteractableActor : public AActor
 {
 	GENERATED_BODY()
 
-public:
-	AInteractableActor();
-
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FGameplayTag ItemTag;
