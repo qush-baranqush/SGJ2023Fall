@@ -7,6 +7,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "GJGameMode.generated.h"
 
+class UGameEventsManagerComponent;
 class UWorldTimeComponent;
 UCLASS()
 class SGJ2023FALL_API AGJGameMode : public AGameModeBase
@@ -20,5 +21,8 @@ public:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UWorldTimeComponent* WorldTimeComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UGameEventsManagerComponent* GameEventsManagerComponent;;
 
 };

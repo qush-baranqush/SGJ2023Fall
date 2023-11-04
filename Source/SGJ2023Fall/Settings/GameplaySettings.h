@@ -11,6 +11,18 @@
  * 
  */
 
+USTRUCT(BlueprintType)
+struct FGameTimeEvent
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FGameplayTag> EventTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float AtTime = -1.f;
+};
+
 UCLASS(Config=Game, defaultconfig)
 class SGJ2023FALL_API UGameplaySettings : public UDeveloperSettings
 {
@@ -31,4 +43,17 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
 	FGameplayTag EndgameTag;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	FGameplayTag ShipBuiltTag;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	FGameplayTag ItemAcquiredMessageTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	FGameplayTag ShipRequestTag;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	TArray<FGameTimeEvent> GameTimeEvents;
+	
 };

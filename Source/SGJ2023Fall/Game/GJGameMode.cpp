@@ -3,6 +3,7 @@
 
 #include "GJGameMode.h"
 
+#include "GameEventsManagerComponent.h"
 #include "WorldTimeComponent.h"
 
 
@@ -10,4 +11,5 @@
 AGJGameMode::AGJGameMode()
 {
 	WorldTimeComponent = CreateDefaultSubobject<UWorldTimeComponent>(TEXT("WorldTime"));
+	GameEventsManagerComponent = CreateDefaultSubobject<UGameEventsManagerComponent>(TEXT("GameEventsManager"));
 }

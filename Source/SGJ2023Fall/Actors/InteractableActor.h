@@ -11,6 +11,9 @@ UCLASS(BlueprintType)
 class SGJ2023FALL_API AInteractableActor : public AActor
 {
 	GENERATED_BODY()
+	
+public:
+	const FGameplayTag& GetItemTag() const { return ItemTag; }
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
