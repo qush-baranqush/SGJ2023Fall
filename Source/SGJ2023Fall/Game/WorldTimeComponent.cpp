@@ -23,6 +23,12 @@ void UWorldTimeComponent::BeginPlay()
 
 	TArray<AActor*> DirectionalLights;
 	const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
+	if (!GameplaySettings->bDayNightChangeEnabled)
+	{
+		SetComponentTickEnabled(false);
+		return;
+	}
+	
 	UGameplayStatics::GetAllActorsOfClass(this, ADirectionalLight::StaticClass(), DirectionalLights);
 	for (auto* DirectionLightActor : DirectionalLights)
 	{
@@ -34,7 +40,9 @@ void UWorldTimeComponent::BeginPlay()
 	}
 
 	check(DirectionalLight.Get());
-	DirectionalLight->SetActorRotation(GameplaySettings->StartRotation);
+	check(GameplaySettings->SunlightPositions.Num() > 1);
+	DirectionalLight->SetActorRotation(GameplaySettings->SunlightPositions[0]);
+	TimePerPosition = GameplaySettings->TotalPlayTime / (GameplaySettings->SunlightPositions.Num() - 1);
 }
 
 
@@ -44,15 +52,33 @@ void UWorldTimeComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
-	if (AccumulatedTime < GameplaySettings->TotalPlayTime)
+	if (GameplaySettings->SunlightPositions.Num() < 2)
+		return;
+	
+	if (TotalAccumulatedTime < GameplaySettings->TotalPlayTime)
 	{
 		if (DirectionalLight.IsValid())
 		{
-			DirectionalLight->SetActorRotation(FMath::Lerp(GameplaySettings->StartRotation, GameplaySettings->EndRotation,
-				AccumulatedTime / GameplaySettings->TotalPlayTime));
+			FRotator NewRotation = FMath::Lerp(GameplaySettings->SunlightPositions[CurrentIndex], GameplaySettings->SunlightPositions[CurrentIndex+1],
+				CurrentPeriodTime / TimePerPosition);
+			UE_VLOG(this, LogTemp, Verbose, TEXT("Accumulated time = %.2f"), TotalAccumulatedTime);
+			UE_VLOG(this, LogTemp, Verbose, TEXT("Current period time = %.2f"), CurrentPeriodTime);
+			UE_VLOG(this, LogTemp, Verbose, TEXT("Current rotator index = %d"), CurrentIndex);
+			UE_VLOG(this, LogTemp, Verbose, TEXT("Alpha = %.2f;"), CurrentPeriodTime / TimePerPosition);
+			UE_VLOG(this, LogTemp, Verbose, TEXT("New rotation = %s;"), *NewRotation.ToString());
+			UE_VLOG(this, LogTemp, Verbose, TEXT("Time per pos = %.2f;"), TimePerPosition);
+
+			CurrentPeriodTime+=DeltaTime;
+			if (CurrentPeriodTime > TimePerPosition)
+			{
+				CurrentIndex++;
+				CurrentPeriodTime = 0.f;
+			}
+			
+			DirectionalLight->SetActorRotation(NewRotation);
 		}
 
-		AccumulatedTime += DeltaTime;
+		TotalAccumulatedTime += DeltaTime;
 	}
 	else
 	{
