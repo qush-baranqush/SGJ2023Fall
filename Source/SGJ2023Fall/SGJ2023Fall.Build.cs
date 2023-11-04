@@ -9,5 +9,6 @@ public class SGJ2023Fall : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayMessageRuntime", "DeveloperSettings", "GameplayTags" });
 	}
 }
