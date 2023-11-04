@@ -79,5 +79,11 @@ Intermediate/*
 Plugins/*/Intermediate/*
 Plugins/Developer/*
 
+!/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor-GameplayMessageNodes.dll
+!/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor-GameplayMessageNodes.pdb
+!/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor-GameplayMessageRuntime.dll
+!/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor-GameplayMessageRuntime.pdb
+!/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor.modules
+
 # Cache files for the editor to use
 DerivedDataCache/*
