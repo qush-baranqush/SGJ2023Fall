@@ -79,5 +79,7 @@ Intermediate/*
 Plugins/*/Intermediate/*
 Plugins/Developer/*
 
+!Plugins/GameplayMessageRouter/Binaries/**
+
 # Cache files for the editor to use
 DerivedDataCache/*

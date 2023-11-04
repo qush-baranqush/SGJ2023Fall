@@ -23,6 +23,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "GameplayMessageRouter",
+			"Enabled": true
+		},
+		{
 			"Name": "GameplayBehaviorSmartObjects",
 			"Enabled": true
 		},
