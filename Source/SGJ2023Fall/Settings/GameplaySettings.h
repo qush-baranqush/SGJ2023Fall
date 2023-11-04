@@ -10,6 +10,7 @@
 /**
  * 
  */
+
 UCLASS(Config=Game, defaultconfig)
 class SGJ2023FALL_API UGameplaySettings : public UDeveloperSettings
 {
@@ -17,17 +18,17 @@ class SGJ2023FALL_API UGameplaySettings : public UDeveloperSettings
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
-	float TotalPlayTime = 600.f;
+	bool bDayNightChangeEnabled = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
-	FRotator StartRotation;
+	float TotalPlayTime = 180.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
-	FRotator EndRotation;
-
+	TArray<FRotator> SunlightPositions;	
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
 	FName DirectionalLightTag = "DayLight";
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
-	FGameplayTag EndgameTag;	
+	FGameplayTag EndgameTag;
 };

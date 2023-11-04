@@ -27,5 +27,8 @@ public:
 
 private:
 	TWeakObjectPtr<ADirectionalLight> DirectionalLight;
-	float AccumulatedTime = 0.f;
+	float TotalAccumulatedTime = 0.f;
+	float CurrentPeriodTime = 0.f;
+	float TimePerPosition = 0.f;
+	int CurrentIndex = 0;
 };
