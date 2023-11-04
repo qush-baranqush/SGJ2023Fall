@@ -34,6 +34,66 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RD.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RD.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderBlueprint.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderBlueprint.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderGameControl.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderGameControl.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLC.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLC.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLink.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLink.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLogging.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderLogging.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderShaderInfo.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor-RiderShaderInfo.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/GameplayMessageRouter/Binaries/Win64/UnrealEditor-GameplayMessageNodes.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -95,42 +155,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Binaries/Win64/Android/UnrealEditor.modules",
-			"Type": "RequiredResource"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSPlatformEditor.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSPlatformEditor.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSRuntimeSettings.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSRuntimeSettings.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSTargetPlatform.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-IOSTargetPlatform.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-TVOSTargetPlatform.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor-TVOSTargetPlatform.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/IOS/UnrealEditor.modules",
 			"Type": "RequiredResource"
 		},
 		{
@@ -1630,14 +1654,6 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-LaunchDaemonMessages.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-LaunchDaemonMessages.pdb",
-			"Type": "SymbolFile"
-		},
-		{
 			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-LauncherPlatform.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -1755,14 +1771,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MRMesh.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MacTargetPlatform.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MacTargetPlatform.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -1971,14 +1979,6 @@
 		},
 		{
 			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MessagingRpc.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MetalShaderFormat.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Binaries/Win64/UnrealEditor-MetalShaderFormat.pdb",
 			"Type": "SymbolFile"
 		},
 		{
@@ -6471,6 +6471,10 @@
 		}
 	],
 	"RuntimeDependencies": [
+		{
+			"Path": "$(ProjectDir)/Plugins/Developer/RiderLink/RiderLink.uplugin",
+			"Type": "UFS"
+		},
 		{
 			"Path": "$(ProjectDir)/Plugins/GameplayMessageRouter/GameplayMessageRouter.uplugin",
 			"Type": "UFS"
