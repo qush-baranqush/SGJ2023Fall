@@ -20,7 +20,7 @@ void UInventoryComponent::PickUp(AInteractableActor* Actor)
 		MessageData.ItemsCount = InventoryItemCount;
 		
 		UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->ItemAcquiredMessageTag, MessageData);
-		Actor->Destroy(); // TODO hang it on player
+		Actor->OnPickedUp(); // TODO hang it on player
 	}
 }
 

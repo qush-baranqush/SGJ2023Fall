@@ -38,4 +38,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
 	FBlackboardKeySelector UnderAttackBBKey;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	FBlackboardKeySelector SmartObjectClaimHandleBBKey;
 };

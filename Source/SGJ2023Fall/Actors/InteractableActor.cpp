@@ -2,3 +2,13 @@
 
 
 #include "InteractableActor.h"
+
+void AInteractableActor::SetActive_Implementation(bool bActiveNew)
+{
+	bActive = bActiveNew;
+}
+
+void AInteractableActor::OnPickedUp_Implementation()
+{
+	
+}
