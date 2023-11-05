@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "SGJ2023Fall/Data/ShipData.h"
 #include "UObject/Object.h"
 #include "GameplaySettings.generated.h"
 
@@ -17,7 +18,7 @@ struct FGameTimeEvent
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FGameplayTag> EventTag;
+	TArray<FGameplayTag> EventsTags;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float AtTime = -1.f;
@@ -55,5 +56,8 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
 	TArray<FGameTimeEvent> GameTimeEvents;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	TArray<FShipEvent> ShipEvents;	
 	
 };
