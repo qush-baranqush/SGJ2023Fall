@@ -22,9 +22,13 @@ AShip::AShip()
 void AShip::BeginPlay()
 {
 	Super::BeginPlay();
+	auto GameplaySettings = GetDefault<UGameplaySettings>();
+	if (ShipEvents.Num() <= 0)
+		ShipEvents = GameplaySettings->ShipEvents;
+	
 	if (ShipEvents.Num() <= 0)
 		return;
-	
+		
 	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[0].TimeDelay);	
 }
 

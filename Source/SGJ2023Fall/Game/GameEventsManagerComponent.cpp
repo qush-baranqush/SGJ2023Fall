@@ -16,7 +16,7 @@ void UGameEventsManagerComponent::BeginPlay()
 	{
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDelegate;
-		TimerDelegate.BindUObject(this, &UGameEventsManagerComponent::OnEventHappen, GameEvent.EventTag);
+		TimerDelegate.BindUObject(this, &UGameEventsManagerComponent::OnEventHappen, GameEvent.EventsTags);
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, GameEvent.AtTime, false);
 		Timers.Add(TimerHandle);
 	}
