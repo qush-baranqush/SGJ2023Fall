@@ -6,6 +6,10 @@
 #include "GameFramework/Character.h"
 #include "AICharacter.generated.h"
 
+class UMotionWarpingComponent;
+class UGestureComponent;
+class UGesturesDataAsset;
+
 UCLASS()
 class SGJ2023FALL_API AAICharacter : public ACharacter
 {
@@ -16,13 +20,9 @@ public:
 	AAICharacter();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UGestureComponent* GestureComponent;
 
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UMotionWarpingComponent* MotionWarpingComponent;
 };

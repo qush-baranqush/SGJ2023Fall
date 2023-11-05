@@ -15,10 +15,19 @@ class SGJ2023FALL_API AInteractableActor : public AActor
 public:
 	const FGameplayTag& GetItemTag() const { return ItemTag; }
 
+	UFUNCTION(BlueprintNativeEvent)
+	void SetActive(bool bActiveNew);
+	
+	UFUNCTION(BlueprintNativeEvent)
+	void OnPickedUp();
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FGameplayTag ItemTag;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FGameplayTagContainer SpecificTags;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bActive = true;	
 };
