@@ -13,11 +13,13 @@ UBTService_Attack::UBTService_Attack()
 {
 	NodeName = "Attack";
 	AttackOnCooldownBBKey.AddBoolFilter(this, GET_MEMBER_NAME_CHECKED(UBTService_Attack, AttackOnCooldownBBKey));
+	IsAttackingBBKey.AddBoolFilter(this, GET_MEMBER_NAME_CHECKED(UBTService_Attack, IsAttackingBBKey));
 }
 
 void UBTService_Attack::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
+	OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsAttackingBBKey.SelectedKeyName, false);
 	FBTMemory_Attack* AttackMemory = reinterpret_cast<FBTMemory_Attack*>(NodeMemory);
 
 	auto Target = Cast<AActor>(OwnerComp.GetBlackboardComponent()->GetValueAsObject(TargetBBKey.SelectedKeyName));
@@ -42,7 +44,8 @@ void UBTService_Attack::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		if (AttackDuration < 0.f)
 			return;
 
-		SetNextTickTime(NodeMemory, AttackDuration);	
+		SetNextTickTime(NodeMemory, AttackDuration * 0.8f);
+		OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsAttackingBBKey.SelectedKeyName, true);
 		if (FMath::RandRange(0.f, 1.f) > ContinueComboChance)
 		{
 			AttackMemory->TimeToNextAttack += AttackCooldown;
