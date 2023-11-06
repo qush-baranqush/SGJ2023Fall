@@ -14,6 +14,7 @@ class SGJ2023FALL_API UInventoryComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable)
 	void PickUp(AInteractableActor* Actor);
 	// void Drop(AInteractableActor* Actor);
 	// void Remove(AInteractableActor* Actor);

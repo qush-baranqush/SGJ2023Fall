@@ -15,7 +15,7 @@ void UInventoryComponent::PickUp(AInteractableActor* Actor)
 	const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
 	if (GameplaySettings->ItemAcquiredMessageTag.IsValid())
 	{
-		int& InventoryItemCount = Inventory.FindOrAdd(Actor->GetItemTag(), 0);
+		int& InventoryItemCount = Inventory.FindOrAdd(Actor->GetItemTag(), 1);
 		InventoryItemCount++;
 		MessageData.ItemsCount = InventoryItemCount;
 		
