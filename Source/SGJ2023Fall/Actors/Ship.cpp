@@ -30,7 +30,8 @@ void AShip::BeginPlay()
 		return;
 		
 	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[0].TimeDelay);
-	ShipMesh->SetStaticMesh(ShipEvents[0].ShipStageStaticMesh);
+	if (IsValid(ShipEvents[0].ShipStageStaticMesh))
+		ShipMesh->SetStaticMesh(ShipEvents[0].ShipStageStaticMesh);
 	// TODO lift up ship workers?
 }
 
@@ -103,7 +104,9 @@ void AShip::OnNewRequirement()
 			FGameplayMessage_ShipItemRequest ShipItemRequest;
 			ShipItemRequest.ItemsCount = CurrentRequest.CountRequired;
 			ShipItemRequest.ItemTag = CurrentRequest.ItemTag;
-			UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->ShipRequestTag, ShipItemRequest);	
+			UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->ShipRequestTag, ShipItemRequest);
+			if (IsValid(ShipEvents[CurrentEventIndex].ShipStageStaticMesh))
+				ShipMesh->SetStaticMesh(ShipEvents[CurrentEventIndex].ShipStageStaticMesh);
 		}
 	}
 }
