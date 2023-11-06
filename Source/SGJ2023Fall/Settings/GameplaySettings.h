@@ -55,6 +55,9 @@ public:
 	FGameplayTag ShipRequestTag;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
+	FGameplayTag DarkTimeTag;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)
 	TArray<FGameTimeEvent> GameTimeEvents;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Config)

@@ -12,7 +12,7 @@ public class SGJ2023Fall : ModuleRules
 		PrivateDependencyModuleNames.AddRange(new string[]
 		{
 			"GameplayMessageRuntime", "DeveloperSettings", "GameplayTags", "AIModule", "GameplayTasks",
-			"SmartObjectsModule", "GameplayBehaviorsModule", "MotionWarping", 
+			"SmartObjectsModule", "GameplayBehaviorsModule", "MotionWarping", "UMG",
 			"GameplayBehaviorSmartObjectsModule"
 		});
 	}
