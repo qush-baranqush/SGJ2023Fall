@@ -38,6 +38,9 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	bool IsHealthFull();
 
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	float GetHealthPercent();
+
 
 	
 protected:

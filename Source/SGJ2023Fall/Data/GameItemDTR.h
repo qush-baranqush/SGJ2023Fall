@@ -5,6 +5,7 @@
 #include "GameItemDTR.generated.h"
 
 class AInteractableActor;
+class USphereComponent;
 USTRUCT(BlueprintType)
 struct FGameItemDTR : public FGameplayTagTableRow
 {
@@ -22,4 +23,5 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<AInteractableActor> SpawnClass;	
+
 };
