@@ -17,13 +17,17 @@ class SGJ2023FALL_API AShip : public AActor
 public:
 	AShip();
 	void Interact(ACharacter* Interactor);
-	
+	TArray<FVector> GetPierceLocations() const { return PierceLocations; }
+
 protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FShipEvent> ShipEvents;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(MakeEditWidget))
+	TArray<FVector> PierceLocations;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* ShipMesh;
 	

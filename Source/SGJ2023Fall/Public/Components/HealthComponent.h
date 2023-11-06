@@ -18,6 +18,8 @@ public:
 
 	FOnDeath OnDeath;
 
+	bool IsAlive() const { return Health > 0.f; }
+	
 protected:
 
 	virtual void BeginPlay() override;

@@ -29,7 +29,9 @@ void AShip::BeginPlay()
 	if (ShipEvents.Num() <= 0)
 		return;
 		
-	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[0].TimeDelay);	
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[0].TimeDelay);
+	ShipMesh->SetStaticMesh(ShipEvents[0].ShipStageStaticMesh);
+	// TODO lift up ship workers?
 }
 
 void AShip::Interact(ACharacter* Interactor)
@@ -37,6 +39,7 @@ void AShip::Interact(ACharacter* Interactor)
 	UInventoryComponent* InventoryComponent = Interactor->FindComponentByClass<UInventoryComponent>();
 	if (!InventoryComponent)
 		return;
+	
 	TMap<FGameplayTag, int> ItemsToTake;
 	TArray<FGameplayTag> RequestsToRemove;
 	

@@ -28,6 +28,9 @@ struct FShipEvent
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float TimeDelay = 10.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UStaticMesh* ShipStageStaticMesh;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float ProgressGranted = 0.f;

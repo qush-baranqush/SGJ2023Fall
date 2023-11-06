@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "AICharacter.generated.h"
 
+class UCombatComponent;
+class UAIHealthComponent;
 class UMotionWarpingComponent;
 class UGestureComponent;
 class UGesturesDataAsset;
@@ -20,9 +22,15 @@ public:
 	AAICharacter();
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UGestureComponent* GestureComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UMotionWarpingComponent* MotionWarpingComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UAIHealthComponent* HealthComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UCombatComponent* CombatComponent;	
 };
