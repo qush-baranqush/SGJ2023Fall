@@ -60,3 +60,8 @@ bool UHealthComponent::IsHealthFull()
 	return FMath::IsNearlyEqual(Health, MaxHealth);
 }
 
+float UHealthComponent::GetHealthPercent()
+{
+	return Health / MaxHealth;
+}
+
