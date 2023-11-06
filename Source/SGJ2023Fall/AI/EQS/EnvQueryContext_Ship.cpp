@@ -14,6 +14,11 @@ void UEnvQueryContext_Ship::ProvideContext(FEnvQueryInstance& QueryInstance, FEn
 	if (Ship)
 	{
 		TArray<FVector> Locations = Ship->GetPierceLocations();
+		for (FVector& Location : Locations)
+		{
+			Location += Ship->GetActorLocation();
+		}
+		
 		UEnvQueryItemType_Point::SetContextHelper(ContextData, Locations);
 	}
 }

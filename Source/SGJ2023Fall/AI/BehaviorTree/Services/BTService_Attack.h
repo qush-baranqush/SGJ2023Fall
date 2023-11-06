@@ -41,4 +41,7 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FBlackboardKeySelector AttackOnCooldownBBKey;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FBlackboardKeySelector IsAttackingBBKey;
 };
