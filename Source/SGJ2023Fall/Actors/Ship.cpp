@@ -6,6 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/GameplayMessageSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 #include "SGJ2023Fall/Components/InventoryComponent.h"
 #include "SGJ2023Fall/Data/GameplayMessages.h"
 #include "SGJ2023Fall/Settings/GameAISettings.h"
@@ -32,6 +33,8 @@ void AShip::BeginPlay()
 	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[0].TimeDelay);
 	if (IsValid(ShipEvents[0].ShipStageStaticMesh))
 		ShipMesh->SetStaticMesh(ShipEvents[0].ShipStageStaticMesh);
+
+	InteractionVolumeComponent->OnComponentBeginOverlap.AddDynamic(this, &AShip::OnInteractionVolumeOverlap);
 	// TODO lift up ship workers?
 }
 
@@ -43,7 +46,8 @@ void AShip::Interact(ACharacter* Interactor)
 	
 	TMap<FGameplayTag, int> ItemsToTake;
 	TArray<FGameplayTag> RequestsToRemove;
-	
+
+	bool bShipRequestUpdated = false;
 	const auto Inventory = InventoryComponent->GetInventory();
 	for (auto& Request : CurrentRequests)
 	{
@@ -53,10 +57,17 @@ void AShip::Interact(ACharacter* Interactor)
 			int QuantityToTake = FMath::Min(*ItemCountPtr, Request.CountRequired - Request.CurrentCount);
 			Request.CurrentCount += QuantityToTake;
 			ItemsToTake.Add(Request.ItemTag, QuantityToTake);
+			bShipRequestUpdated = true;
 			if (Request.CurrentCount >= Request.CountRequired)
 			{
 				RequestsToRemove.Add(Request.ItemTag);
 			}
+
+			FGameplayMessage_ShipItemRequest ShipItemRequest;
+			ShipItemRequest.ItemsCount = Request.CountRequired - Request.CurrentCount;
+			ShipItemRequest.ItemTag = Request.ItemTag;
+			const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
+			UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->ShipRequestTag, ShipItemRequest);
 		}
 	}
 
@@ -64,24 +75,28 @@ void AShip::Interact(ACharacter* Interactor)
 	{
 		InventoryComponent->Remove(TakenItem.Key, TakenItem.Value);
 	}
-
+	
 	CurrentRequests.RemoveAll([RequestsToRemove](const FShipRequest& ShipRequest) { return RequestsToRemove.Contains(ShipRequest.ItemTag); } );
-	if (CurrentRequests.Num() == 0)
+	if (CurrentRequests.Num() == 0 && RequestsToRemove.Num() > 0)
 	{
-		if (ShipEvents.Num() < CurrentEventIndex)
+		if (CurrentEventIndex < ShipEvents.Num())
 		{
 			const UGameAISettings* GameAISettings = GetDefault<UGameAISettings>();
 			if (GameAISettings->ResumeWorkingEventTag.IsValid())
 				UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameAISettings->ResumeWorkingEventTag, FGameplayMessage_EmptyMessage());
 
 			CurrentEventIndex++;
-			GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[CurrentEventIndex].TimeDelay, false);
 		}
-		else
+
+		if (CurrentEventIndex >= ShipEvents.Num())
 		{
 			const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
 			if (GameplaySettings->ShipBuiltTag.IsValid())
 				UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->ShipBuiltTag, FGameplayMessage_EmptyMessage());
+		}
+		else
+		{
+			GetWorld()->GetTimerManager().SetTimer(Timer, this, &AShip::OnNewRequirement, ShipEvents[CurrentEventIndex].TimeDelay, false);
 		}
 	}
 }
@@ -108,5 +123,14 @@ void AShip::OnNewRequirement()
 			if (IsValid(ShipEvents[CurrentEventIndex].ShipStageStaticMesh))
 				ShipMesh->SetStaticMesh(ShipEvents[CurrentEventIndex].ShipStageStaticMesh);
 		}
+	}
+}
+
+void AShip::OnInteractionVolumeOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool BFromSweep, const FHitResult& SweepResult)
+{
+	if (auto Character = Cast<ACharacter>(OtherActor))
+	{
+		Interact(Character);
 	}
 }

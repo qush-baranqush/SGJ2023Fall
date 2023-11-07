@@ -16,6 +16,12 @@ void UHUDWidget::NativeConstruct()
 
 	if (GameplaySettings->ShipRequestTag.IsValid())
 		UGameplayMessageSubsystem::Get(GetWorld()).RegisterListener(GameplaySettings->ShipRequestTag, this, &UHUDWidget::OnShipRequest);
+
+	if (GameplaySettings->ShipBuiltTag.IsValid())
+		UGameplayMessageSubsystem::Get(GetWorld()).RegisterListener(GameplaySettings->ShipBuiltTag, this, &UHUDWidget::OnShipBuilt);
+	
+	if (GameplaySettings->EndgameTag.IsValid())
+		UGameplayMessageSubsystem::Get(GetWorld()).RegisterListener(GameplaySettings->EndgameTag, this, &UHUDWidget::OnEndgame);
 }
 
 void UHUDWidget::OnItemAcquired(FGameplayTag MessageTag, const FGameplayMessage_ItemPickedUp& Message)
@@ -26,4 +32,14 @@ void UHUDWidget::OnItemAcquired(FGameplayTag MessageTag, const FGameplayMessage_
 void UHUDWidget::OnShipRequest(FGameplayTag MessageTag, const FGameplayMessage_ShipItemRequest& Message)
 {
 	OnShipRequestHandle(Message.ItemTag, Message.ItemsCount);
+}
+
+void UHUDWidget::OnEndgame(FGameplayTag MessageTag, const FGameplayMessage_Endgame& Message)
+{
+	OnEndgameHandle();
+}
+
+void UHUDWidget::OnShipBuilt(FGameplayTag MessageTag, const FGameplayMessage_EmptyMessage& Message)
+{
+	OnShipBuiltHandle();
 }

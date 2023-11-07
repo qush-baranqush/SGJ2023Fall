@@ -24,6 +24,7 @@ void UGameEventsManagerComponent::BeginPlay()
 
 void UGameEventsManagerComponent::OnEventHappen(TArray<FGameplayTag> EventsTags)
 {
+	const UGameplaySettings* GameplaySettings = GetDefault<UGameplaySettings>();
 	for (const auto& EventTag : EventsTags)
 	{
 		UGameplayMessageSubsystem::Get(this).BroadcastMessage(EventTag, FGameplayMessage_EmptyMessage());

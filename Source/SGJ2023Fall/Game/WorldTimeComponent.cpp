@@ -4,6 +4,7 @@
 #include "WorldTimeComponent.h"
 
 #include "Engine/DirectionalLight.h"
+#include "GameFramework/Character.h"
 #include "GameFramework/GameplayMessageSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "SGJ2023Fall/Data/GameplayMessages.h"
@@ -43,6 +44,11 @@ void UWorldTimeComponent::BeginPlay()
 	check(GameplaySettings->SunlightPositions.Num() > 1);
 	DirectionalLight->SetActorRotation(GameplaySettings->SunlightPositions[0]);
 	TimePerPosition = GameplaySettings->TotalPlayTime / (GameplaySettings->SunlightPositions.Num() - 1);
+
+	if (GameplaySettings->ShipBuiltTag.IsValid())
+	{
+		UGameplayMessageSubsystem::Get(this).RegisterListener(GameplaySettings->ShipBuiltTag, this, &UWorldTimeComponent::OnShipBuilt);
+	}
 }
 
 
@@ -87,8 +93,16 @@ void UWorldTimeComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		{
 			FGameplayMessage_Endgame Message = FGameplayMessage_Endgame();
 			UGameplayMessageSubsystem::Get(this).BroadcastMessage(GameplaySettings->EndgameTag, Message);
+			auto PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+			auto PlayerCharacter = UGameplayStatics::GetPlayerCharacter(this, 0);
+			PlayerCharacter->DisableInput(PlayerController);
+			PlayerController->DisableInput(PlayerController);
 		}
 	}
-	
+}
+
+void UWorldTimeComponent::OnShipBuilt(FGameplayTag MessageTag, const FGameplayMessage_EmptyMessage& Message)
+{
+	SetComponentTickEnabled(false);
 }
 

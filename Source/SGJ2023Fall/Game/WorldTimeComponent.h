@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Components/ActorComponent.h"
+#include "SGJ2023Fall/Data/GameplayMessages.h"
 #include "WorldTimeComponent.generated.h"
 
 
@@ -31,4 +33,5 @@ private:
 	float CurrentPeriodTime = 0.f;
 	float TimePerPosition = 0.f;
 	int CurrentIndex = 0;
+	void OnShipBuilt(FGameplayTag MessageTag, const FGameplayMessage_EmptyMessage& Message);
 };

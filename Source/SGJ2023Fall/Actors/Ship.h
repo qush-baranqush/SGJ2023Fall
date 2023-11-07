@@ -40,4 +40,8 @@ private:
 	TArray<FShipRequest> CurrentRequests;
 	
 	void OnNewRequirement();
+
+	UFUNCTION()
+	void OnInteractionVolumeOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool BFromSweep,
+									const FHitResult& SweepResult);
 };

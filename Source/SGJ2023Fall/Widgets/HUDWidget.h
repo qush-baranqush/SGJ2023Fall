@@ -25,8 +25,16 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnShipRequestHandle(FGameplayTag ItemTag, int Count);
-	
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnEndgameHandle();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnShipBuiltHandle();
+
 private:
 	void OnItemAcquired(FGameplayTag MessageTag, const FGameplayMessage_ItemPickedUp& Message);
 	void OnShipRequest(FGameplayTag MessageTag, const FGameplayMessage_ShipItemRequest& Message);
+	void OnEndgame(FGameplayTag MessageTag, const FGameplayMessage_Endgame& Message);
+	void OnShipBuilt(FGameplayTag MessageTag, const FGameplayMessage_EmptyMessage& Message);
 };
